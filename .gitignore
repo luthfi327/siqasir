@@ -1,0 +1,25 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+# Abaikan file export database
+*.sql
+
+# Abaikan file arsip (seperti saran di proyek sebelumnya)
+*.zip
+*.rar
+*.tar.gz
+
+# Pastikan file log error server tidak ikut ter-upload
+/storage/logs/*.log

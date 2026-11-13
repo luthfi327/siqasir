@@ -1,0 +1,442 @@
+/* ==========================================================================
+   Bathiku Kasir — Admin Panel Stylesheet
+   Dipakai bersama Bootstrap 5 (CDN) + Bootstrap Icons (CDN).
+   Didesain agar rapi, konsisten, dan responsif di desktop, tablet & mobile.
+   ========================================================================== */
+
+:root {
+  --bk-primary: #4f46e5;
+  --bk-primary-dark: #4338ca;
+  --bk-primary-light: #eef2ff;
+  --bk-accent: #06b6d4;
+  --bk-success: #16a34a;
+  --bk-warning: #d97706;
+  --bk-danger: #dc2626;
+  --bk-bg: #f3f4f8;
+  --bk-surface: #ffffff;
+  --bk-border: #e7e8f1;
+  --bk-text: #1f2433;
+  --bk-text-muted: #6b7280;
+  --bk-sidebar-bg: #161527;
+  --bk-sidebar-bg-active: #2a2750;
+  --bk-radius: 14px;
+  --bk-sidebar-w: 260px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bk-bg);
+  color: var(--bk-text);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: .925rem;
+}
+
+a { text-decoration: none; }
+
+/* ---------------------------------------------------------------------- */
+/* Shell layout                                                            */
+/* ---------------------------------------------------------------------- */
+
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: var(--bk-sidebar-w);
+  flex-shrink: 0;
+  background: linear-gradient(195deg, var(--bk-sidebar-bg) 0%, #1d1a36 100%);
+  color: #cfd0e6;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1040;
+  transition: transform .25s ease;
+}
+
+.admin-main {
+  flex: 1;
+  margin-left: var(--bk-sidebar-w);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: 1.35rem 1.25rem;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: .2px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-brand .logo-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--bk-primary), var(--bk-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.sidebar-brand small {
+  display: block;
+  font-weight: 500;
+  font-size: .68rem;
+  color: #9a98c2;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.sidebar-nav {
+  padding: 1rem .8rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-nav .nav-section-label {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: #6e6c95;
+  padding: .9rem .6rem .35rem;
+  font-weight: 700;
+}
+
+.sidebar-nav .nav-link {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  color: #c4c3de;
+  padding: .62rem .8rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: .87rem;
+  margin-bottom: .15rem;
+  transition: background .15s ease, color .15s ease;
+}
+
+.sidebar-nav .nav-link i { font-size: 1.05rem; width: 20px; text-align: center; }
+
+.sidebar-nav .nav-link:hover {
+  background: rgba(255,255,255,.06);
+  color: #fff;
+}
+
+.sidebar-nav .nav-link.active {
+  background: var(--bk-sidebar-bg-active);
+  color: #fff;
+  box-shadow: inset 3px 0 0 var(--bk-accent);
+}
+
+.sidebar-footer {
+  padding: .9rem 1.1rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: .72rem;
+  color: #6e6c95;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Topbar                                                                   */
+/* ---------------------------------------------------------------------- */
+
+.admin-topbar {
+  background: var(--bk-surface);
+  border-bottom: 1px solid var(--bk-border);
+  padding: .85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+.topbar-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  flex: 1;
+}
+
+.topbar-clock {
+  font-size: .8rem;
+  color: var(--bk-text-muted);
+  font-weight: 600;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .topbar-clock { display: block; }
+}
+
+.avatar-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bk-primary), var(--bk-accent));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: .8rem;
+}
+
+.admin-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Cards & stat tiles                                                      */
+/* ---------------------------------------------------------------------- */
+
+.bk-card {
+  background: var(--bk-surface);
+  border: 1px solid var(--bk-border);
+  border-radius: var(--bk-radius);
+  box-shadow: 0 1px 2px rgba(20, 20, 50, .04);
+}
+
+.bk-card-header {
+  padding: 1.05rem 1.3rem;
+  border-bottom: 1px solid var(--bk-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.bk-card-header h2, .bk-card-header h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.bk-card-body { padding: 1.3rem; }
+
+.stat-card {
+  border-radius: var(--bk-radius);
+  border: 1px solid var(--bk-border);
+  background: var(--bk-surface);
+  padding: 1.15rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+
+.stat-card.is-primary::before { background: var(--bk-primary); }
+.stat-card.is-success::before { background: var(--bk-success); }
+.stat-card.is-warning::before { background: var(--bk-warning); }
+.stat-card.is-danger::before  { background: var(--bk-danger); }
+.stat-card.is-info::before    { background: var(--bk-accent); }
+.stat-card.is-dark::before    { background: #4b5563; }
+
+.stat-card .stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: .8rem;
+}
+
+.stat-card.is-primary .stat-icon { background: var(--bk-primary-light); color: var(--bk-primary); }
+.stat-card.is-success .stat-icon { background: #dcfce7; color: var(--bk-success); }
+.stat-card.is-warning .stat-icon { background: #fef3c7; color: var(--bk-warning); }
+.stat-card.is-danger  .stat-icon { background: #fee2e2; color: var(--bk-danger); }
+.stat-card.is-info    .stat-icon { background: #cffafe; color: #0891b2; }
+.stat-card.is-dark    .stat-icon { background: #e5e7eb; color: #374151; }
+
+.stat-card .stat-value {
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stat-card .stat-label {
+  font-size: .78rem;
+  color: var(--bk-text-muted);
+  font-weight: 600;
+  margin-top: .15rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Tables                                                                   */
+/* ---------------------------------------------------------------------- */
+
+.bk-table thead th {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--bk-text-muted);
+  font-weight: 700;
+  border-bottom-width: 1px;
+  white-space: nowrap;
+}
+
+.bk-table td { vertical-align: middle; font-size: .87rem; }
+
+.bk-table tbody tr.row-clickable { cursor: pointer; }
+.bk-table tbody tr.row-clickable:hover { background-color: var(--bk-primary-light); }
+
+.bk-table tbody tr.row-danger  { background-color: #fef2f2 !important; }
+.bk-table tbody tr.row-warning { background-color: #fffbeb !important; }
+
+.table-responsive-wrap {
+  border-radius: var(--bk-radius);
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Badges                                                                   */
+/* ---------------------------------------------------------------------- */
+
+.badge-soft {
+  font-weight: 700;
+  font-size: .72rem;
+  padding: .38em .7em;
+  border-radius: 999px;
+}
+
+.badge-soft-success { background: #dcfce7; color: #166534; }
+.badge-soft-primary { background: #e0e7ff; color: #3730a3; }
+.badge-soft-danger  { background: #fee2e2; color: #991b1b; }
+.badge-soft-warning { background: #fef3c7; color: #92400e; }
+.badge-soft-secondary { background: #e5e7eb; color: #374151; }
+.badge-soft-info { background: #cffafe; color: #0e7490; }
+
+/* ---------------------------------------------------------------------- */
+/* Forms                                                                    */
+/* ---------------------------------------------------------------------- */
+
+.form-label { font-weight: 700; font-size: .82rem; }
+
+.bk-card .form-control, .bk-card .form-select {
+  border-color: var(--bk-border);
+}
+
+.bk-card .form-control:focus, .bk-card .form-select:focus {
+  border-color: var(--bk-primary);
+  box-shadow: 0 0 0 .2rem rgba(79, 70, 229, .12);
+}
+
+.btn-bk-primary {
+  background: var(--bk-primary);
+  border-color: var(--bk-primary);
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn-bk-primary:hover {
+  background: var(--bk-primary-dark);
+  border-color: var(--bk-primary-dark);
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Login page                                                              */
+/* ---------------------------------------------------------------------- */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top left, #221f44 0%, #0f0e1f 60%, #0a0a16 100%);
+  padding: 1.5rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.45);
+}
+
+.login-logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--bk-primary), var(--bk-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0 auto 1rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Pagination (memakai view bawaan Laravel pagination::bootstrap-4,        */
+/* markup-nya kompatibel penuh dengan kelas Bootstrap 5)                   */
+/* ---------------------------------------------------------------------- */
+
+.pagination .page-link {
+  color: var(--bk-primary);
+  border-color: var(--bk-border);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--bk-primary);
+  border-color: var(--bk-primary);
+}
+
+.pagination .page-link:hover {
+  background-color: var(--bk-primary-light);
+  color: var(--bk-primary-dark);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Mobile responsiveness                                                   */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+  }
+  .admin-sidebar.is-open {
+    transform: translateX(0);
+    box-shadow: 0 0 40px rgba(0,0,0,.35);
+  }
+  .admin-main {
+    margin-left: 0;
+  }
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 1030;
+    display: none;
+  }
+  .sidebar-backdrop.is-open { display: block; }
+}
+
+@media (max-width: 575.98px) {
+  .admin-content { padding: 1rem; }
+  .bk-card-body { padding: 1rem; }
+  .stat-card { padding: 1rem; }
+}
